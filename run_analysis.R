@@ -61,6 +61,12 @@ print("...calculating averages by activity and subject")
 #use aggregate to get a new tidy data set with the mean for each of the measurements by the Activity and Subject
 TotalSetSubAverage <- aggregate(TotalSetSub[, 3:68], list(TotalSetSub$Subject, TotalSetSub$Activity), mean)
 ##### STEP 5 FINISHED #####
+
+#writing out datasets to file
+print("...writing datasets to disk")
+write.table(TotalSetSub, "totalsetsub.txt", row.names = FALSE)
+write.table(TotalSetSubAverage, "totalsetsubaverage.txt", row.names = FALSE)
+
 print("...aggregate dataset finished, cleaning up environment")
 rm(list=setdiff(ls(), c("TotalSetSub", "TotalSetSubAverage")))
 
@@ -69,3 +75,4 @@ print("")
 print("Execution Finished!  Two Tidy Data Sets Created")
 print("TotalSetSub is the tidy data set with original measures")
 print("TotalSetSubAverage is a tidy data set with all measured aggregated by Activity and Subject using means")
+print("Both data sets have been written to disk in the home directory with the [dataframename].txt")
